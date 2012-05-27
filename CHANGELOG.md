@@ -1,4 +1,4 @@
-1.0.0 (June 15, 2011)
+1.0.0 (May 27, 2012)
 ---------------------
 
  * Initial release in alpha state
