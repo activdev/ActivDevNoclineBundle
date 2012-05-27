@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="nocline.toolbar.class">ActivDev\NoclineBundle\Services\Toolbar</parameter>
+        <parameter key="nocline.command_configuration.class">ActivDev\NoclineBundle\Services\CommandConfiguration</parameter>
+        <parameter key="nocline.command_type.class">ActivDev\NoclineBundle\Form\Type\CommandType</parameter>
+        <parameter key="nocline.command_runner.class">ActivDev\NoclineBundle\Services\CommandRunner</parameter>
+        <parameter key="nocline.command_util.class">ActivDev\NoclineBundle\Services\CommandUtil</parameter>
+        
+        <!-- user configurable parameters -->
+        <parameter key="nocline.config_parameter.max_execution_time" />
+        <parameter key="nocline.config_parameter.execution_mode" />
+    </parameters>
+
+    <services>
+        <service id="form.type.textmultiple" class="ActivDev\NoclineBundle\Form\Type\TextmultipleType">
+            <tag name="form.type" alias="textmultiple" />
+        </service>
+
+        <service id="nocline.toolbar" class="%nocline.toolbar.class%">
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" priority="-127" />
+            <argument type="service" id="templating.engine.twig" />
+        </service>
+        
+        <service id="nocline.command_configuration" class="%nocline.command_configuration.class%"></service>
+        
+        <service id="nocline.command_type" class="%nocline.command_type.class%">
+            <argument type="service" id="nocline.command_configuration" />            
+        </service>
+        
+        <service id="nocline.command_util" class="%nocline.command_util.class%">
+            <argument type="service" id="kernel" />
+            <argument>%nocline.config_parameter.max_execution_time%</argument>
+            <argument>%nocline.config_parameter.execution_mode%</argument>
+        </service>
+        
+    </services>
+</container>        

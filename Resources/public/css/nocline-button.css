@@ -1,0 +1,92 @@
+
+/*
+ * This file is part of Nocline Bundle.
+ *
+ * (c) 2012 Bruno ABENA < bruno@activdev.com >
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#nocline-d-w-o-c pre
+{
+    font-family: "Bitstream Vera Sans Mono", monospace !important;
+    font-size: 12px !important;
+    color: white  !important;
+    padding: 7px 7px 7px 25px !important;
+    border-top: 1px dashed #888888 !important;
+    letter-spacing: 0.5px !important;
+    line-height: 18px !important;
+}
+#nocline-d-w-o-c pre:first-of-type
+{
+    border-top: none !important;
+}
+#nocline-d-w-o-c pre.nocline-d-w-o-c-ko
+{
+    color: #FCD9DA !important;
+}
+#nocline-d-w-imc{
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    cursor: pointer;
+    cursor: hand;
+}
+#nocline-d-w-o-c 
+{
+    background: rgba(0,0,0,0.75) !important;
+    border-top: 2px solid !important;
+    height: 0;
+    overflow: auto !important;
+    transition: height 0.3s;
+    -moz-transition: height 0.3s; 
+    -webkit-transition: height 0.3s; 
+    -o-transition: height 0.3s;     
+}
+#nocline-d-w-o    
+{
+    bottom: -3px !important;
+    left: 200px !important;
+    position: fixed !important;
+    right: 0 !important;
+    z-index: 2 !important;
+}
+#nocline-d-iframe iframe
+{
+    width: 500px !important;    
+    height: 100% !important;    
+    border: 0 !important;    
+}
+#nocline-d-iframe
+{
+    left: 0 !important;    
+    top: 0 !important;    
+    position: fixed !important;    
+    display: none;    
+    bottom: 40px;
+}
+#nocline-a-btn-w
+{
+    top:        25% !important;    
+    left:       0 !important;
+    padding:    10px 10px 9px 0 !important;
+    position:   fixed !important;
+    outline:    none !important;
+    font-size:  1px  !important;
+    background: #d6d6d6 !important;
+    background: -moz-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%) !important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d6d6d6), color-stop(100%,#bcbcbc)) !important;
+    background: -webkit-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%) !important;
+    background: -o-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%) !important;
+    background: -ms-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%) !important;
+    background: linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%) !important;
+    filter:     progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#bcbcbc',GradientType=0 ) !important;
+    box-shadow:    0 1px 1px 0 rgba(255, 255, 255, 0.698) inset, 0 0 2px 0 rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 5px 5px 0 !important;
+    display: block !important;
+}
+
+#nocline-d-w-o-c pre:last-of-type {
+    padding-bottom: 50px !important;
+}

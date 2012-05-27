@@ -1,0 +1,56 @@
+<link href="{{ asset('/bundles/activdevnocline/css/nocline.css') }}" type="text/css" rel="stylesheet" />
+
+<div id="nocline-mw">
+    <div id="nocline-mw-d-w">
+        <div id="nocline-mw-f">
+            <div id="nocline-mw-stc">
+                <img id="nocline-mw-sc" alt="Close" class="imbtn" src="{{ asset('/bundles/activdevnocline/images/close.png') }}" />
+                <span id="nocline-mw-st">ActivDev Nocline</span>
+            </div>
+            <input type="text" id="nocline-mw-f-t" placeholder="Filter commands" />
+        </div>
+        <div id="nocline-mw-l">
+            <ul id="nocline-mw-ll">
+
+                {% for nsTitle, ns in list %}
+                <li>
+                    <span href="#">{{ nsTitle }}</span>
+                    <ul>
+                        {% for cmdTitle, cmd in ns %}
+                        <li><a href="{{ path('activdev_nocline_default_form', 
+                        { 
+                            'commandNamespace': nsTitle, 
+                            'commandTitle':     cmdTitle
+                        }) }}" title="{{ cmd.description }}">{{ cmd.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+
+            </ul>                
+        </div>
+            <div id="nocline-mw-z">
+                <ul>
+                    <li><img id="nocline-w-or" class="imbtn" src="{{ asset('/bundles/activdevnocline/images/reload.png') }}" alt="" title="Reload commands list" /></li>
+                    <li><img id="nocline-w-op" class="imbtn" src="{{ asset('/bundles/activdevnocline/images/output.png') }}" alt="" title="Toggle output window" /></li>
+                </ul>
+            </div>
+    </div>
+        
+    <div id="nocline-mw-r">
+        <img id="nocline-mw-r-c" alt="" class="imbtn" src="{{ asset('/bundles/activdevnocline/images/close.png') }}" />
+        <img src="{{ asset('/bundles/activdevnocline/images/aw.gif') }}" id="nocline-mw-r-a" alt="" />
+        <div id="nocline-mw-r-t"></div>
+        <div id="nocline-mw-r-b"></div>
+        <div id="nocline-mw-r-f">
+            <button id="nocline-mw-btn-s">Run</button>
+            <label>
+                <span class="span-1"><input id="nocline-mw-r-oo" type="checkbox" value="1" /></span> <span class="span-2">Open output</span>
+            </label>
+        </div>
+    </div>
+        
+</div>
+
+<script type="text/javascript" src="{{ asset('/bundles/activdevnocline/js/jquery-1.7.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/bundles/activdevnocline/js/nocline.js') }}"></script>

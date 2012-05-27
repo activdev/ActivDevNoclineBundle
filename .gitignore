@@ -1,12 +1,6 @@
-# Bootstrap
-app/bootstrap*
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
+TODO_PRIVATE
 
-# Configuration files
-app/config/parameters.ini
+#for alpha no tests yet
+Tests/*
+

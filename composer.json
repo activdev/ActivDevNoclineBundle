@@ -1,0 +1,27 @@
+{
+    "name":         "activdev/nocline",
+    "description":  "The developper friendly and fast way to run Symfony2 commands, through a web interface.",
+    "keywords":     ["command","console", "interface"],
+    "homepage":     "http://nocline.activdev.com/install/",
+    "type":         "symfony-bundle",
+    "license":      "GPLv3",
+    "authors": [
+    {
+        "name": "Bruno ABENA",
+        "email": "bruno@activdev.com",
+        "homepage": "http://activdev.com"
+    },
+    {
+        "name": "Youssef AHMANI",
+        "email": "youssef@activdev.com",
+        "homepage": "http://activdev.com"
+    },
+    ],
+    "require": {
+        "symfony/symfony": "2.1.*"
+    },
+    "target-dir": "ActivDev/NoclineBundle",
+    "autoload": {
+        "psr-0": { "ActivDev\\NoclineBundle": "" }
+    }
+}

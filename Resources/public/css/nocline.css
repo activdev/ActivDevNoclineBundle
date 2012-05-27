@@ -1,0 +1,373 @@
+
+/*
+ * This file is part of Nocline Bundle.
+ *
+ * (c) 2012 Bruno ABENA < bruno@activdev.com >
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#nocline-mw a
+{
+    text-decoration: none;
+}
+#nocline-mw a:hover
+{
+    text-decoration: none;
+}
+#nocline-mw-f-t
+{
+    border-radius: 20px;
+    width: 95%;
+    border: 1px solid #CECECE;
+    background: #e5e5e5;
+    background: url(../images/s.png) no-repeat 5px 4px, -moz-linear-gradient(top, #e5e5e5 0%, #ffffff 55%);
+    background: url(../images/s.png) no-repeat 5px 4px, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(55%,#ffffff));
+    background: url(../images/s.png) no-repeat 5px 4px, -webkit-linear-gradient(top, #e5e5e5 0%,#ffffff 55%);
+    background: url(../images/s.png) no-repeat 5px 4px, -o-linear-gradient(top, #e5e5e5 0%,#ffffff 55%);
+    background: url(../images/s.png) no-repeat 5px 4px, -ms-linear-gradient(top, #e5e5e5 0%,#ffffff 55%);
+    background: url(../images/s.png) no-repeat 5px 4px, linear-gradient(top, #e5e5e5 0%,#ffffff 55%);
+    filter: url(../images/s.png) no-repeat 5px 4px, progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ffffff',GradientType=0 );
+    font-size: 12px;
+    height: 24px;
+    padding-left: 24px;
+    box-shadow: 0 2px 2px #898989 inset;
+}
+#nocline-mw-l
+{
+    background: #DDEAFF;
+    top: 70px;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #C0C0C0;
+    overflow: auto;
+}
+#nocline-mw-f 
+{
+    text-align: center;
+    border-bottom: 1px solid #FFFFFF;
+    height: 70px;
+    width: 100%
+}
+#nocline-mw-d-w div,
+#nocline-mw-r > div,
+#nocline-mw-r
+{
+    position: absolute;
+}
+#nocline-mw-d-w
+{
+    height: 100%;
+    position: relative;
+}
+#nocline-mw-d-w, 
+#nocline-mw
+{
+    width: 200px;    
+}
+#nocline-mw
+{
+    background: #d6d6d6;
+    background: -moz-linear-gradient(top, #d6d6d6 0%, #bcbcbc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d6d6d6), color-stop(100%,#bcbcbc));
+    background: -webkit-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%);
+    background: -o-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%);
+    background: -ms-linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%);
+    background: linear-gradient(top, #d6d6d6 0%,#bcbcbc 100%);
+    filter:     progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6d6d6', endColorstr='#bcbcbc',GradientType=0 );
+    box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.698) inset, 0 0 10px 0 rgba(0, 0, 0, 0.6);
+    left: 0;
+    top: 0;
+    bottom: 10px;
+    position: fixed;
+    font-family: "Lucida Sans Unicode","Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+#nocline-mw-ll, ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#nocline-mw-ll > li > span {
+    background: #478cfe;
+    background: -moz-linear-gradient(top, #478cfe 0%, #2770e5 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#478cfe), color-stop(100%,#2770e5));
+    background: -webkit-linear-gradient(top, #478cfe 0%,#2770e5 100%);
+    background: -o-linear-gradient(top, #478cfe 0%,#2770e5 100%);
+    background: -ms-linear-gradient(top, #478cfe 0%,#2770e5 100%);
+    background: linear-gradient(top, #478cfe 0%,#2770e5 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#478cfe', endColorstr='#2770e5',GradientType=0 );
+    color: #fff;
+    display:block;
+    font-size:14px;
+    padding: 3px 0 4px 10px;
+    text-shadow: 0 -1px #013589;
+}
+#nocline-mw-ll > li > ul li 
+{
+    padding: 0;
+    margin: 0;
+}
+#nocline-mw-ll > li
+{
+    padding: 0;
+}
+#nocline-mw-ll > li > ul a:hover,
+#nocline-mw-ll > li > ul a:focus
+{
+    background: #CBDDF9;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 20px;
+}
+#nocline-mw-ll > li > ul a span
+{
+    background: none repeat scroll 0 0 #BBD3F9;
+    border-radius: 2px 2px 2px 2px;
+    color: #4D7FD1;
+    float: right;
+    margin-top: -2px;
+    padding: 2px 5px;
+}
+#nocline-mw-ll > li > ul a
+{
+    background: transparent;
+/*    border-bottom:1px solid #c5cedc;
+    border-top: 1px solid #e9f1fc;*/
+    color: #1D3E6D;
+    padding: 5px 5px 5px 20px;
+    display:block;
+    text-shadow: 1px 1px 1px #ffffff;
+    font-size: 13px;
+/*    margin: 0 10px;*/
+}
+#nocline-mw-ll > li > ul a:hover, 
+#nocline-mw-ll > li > ul a:focus 
+{
+    
+}
+#nocline-mw-r-t
+{
+    border-bottom: 1px dashed #c0c0c0;
+    color: #000;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+#nocline-mw-r-b label
+{
+    display: inline-block;
+    color:   #222222;
+    font-size: 12px;
+    padding: 8px 0 2px 0;
+}
+#nocline-mw-r-f .span-2
+{
+    float: left;
+    margin-top: 7px;
+}
+#nocline-mw-r-f .span-1
+{
+    display: block;
+    float: left;
+    margin-top: 4px;
+}
+#nocline-mw-r-f
+{
+    bottom: 0;
+    padding: 10px;
+    left: 0;
+    right: 0;
+}
+
+/* button style from twitter bootstrap css */
+#nocline-mw-r-f button#nocline-mw-btn-s
+{
+    background-color: #57A957;
+    background-image: -moz-linear-gradient(center top , #62C462, #57A957);
+    background-image: -webkit-linear-gradient(top , #62C462, #57A957);
+    
+    background: -o-linear-gradient(top, #62C462, #57A957);
+    background: -ms-linear-gradient(top, #62C462,#57A957);
+    background: linear-gradient(top, #62C462, #57A957);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62C462', endColorstr='#57A957',GradientType=0 );
+    
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    float: right;
+}
+#nocline-mw-r-f button:active 
+{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+#nocline-mw-r-f button:hover,
+#nocline-mw-r-b span.nocline-span-add:hover,
+#nocline-mw-r-b span.nocline-span-del:hover
+{
+    background-position: 0 -20px;
+}
+#nocline-mw-r-b input[type="text"].nocline-text-add
+{
+    border-radius: 5px 0 0 5px;
+    width: 88%;
+}
+#nocline-mw-r-b span.nocline-span-del
+{
+    margin-top: 5px;
+}
+#nocline-mw-r-b span.nocline-span-add, 
+#nocline-mw-r-b span.nocline-span-del
+{
+    background: -moz-linear-gradient(center top, #cfcfcf, #C5C5C5);
+    background:    -webkit-linear-gradient(top, #cfcfcf, #C5C5C5);
+    background: -o-linear-gradient(top, #cfcfcf, #C5C5C5);
+    background: -ms-linear-gradient(top, #cfcfcf,#C5C5C5);
+    background: linear-gradient(top, #cfcfcf, #C5C5C5);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#C5C5C5',GradientType=0 );
+    border-radius: 0 5px 5px 0;
+    /*display: inline-block;*/
+    font-size: 17px;
+    font-weight: bold;
+    padding: 0 0 4px 0;
+    text-align: center;
+    width: 20px;    
+    float: right;
+    margin-top: -26px;
+}
+#nocline-mw-r-f button,
+#nocline-mw-r-b .nocline-span-add,
+#nocline-mw-r-b .nocline-span-del
+{
+    -moz-transition: all 0.1s linear 0s;
+    -webkit-transition: all 0.1s linear 0s;
+    -o-transition: all 0.1s linear 0s;
+    -ms-transition: all 0.1s linear 0s;
+    transition: all 0.1s linear 0s;
+    background-color: #E6E6E6;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #FFFFFF 25%, #E6E6E6);
+    background-image: -webkit-linear-gradient(top , #FFFFFF, #FFFFFF 25%, #E6E6E6);
+    background: -o-linear-gradient(top, #FFFFFF, #E6E6E6);
+    background: -ms-linear-gradient(top, #FFFFFF,#E6E6E6);
+    background: linear-gradient(top, #FFFFFF, #E6E6E6);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E6E6E6',GradientType=0 );
+    background-repeat: no-repeat;
+    border-color: #CCCCCC #CCCCCC #BBBBBB;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333333;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: normal;
+    padding: 1px 14px 3px 14px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+#nocline-mw-r-b select:focus, 
+#nocline-mw-r-b input[type="text"]:focus
+{
+    border-color: #666;
+}
+#nocline-mw-r-b select, 
+#nocline-mw-r-b input[type="text"]
+{
+    background: #efefef;
+    background: -moz-linear-gradient(top, #efefef 0%, #ffffff 79%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(79%,#ffffff));
+    background: -webkit-linear-gradient(top, #efefef 0%,#ffffff 79%);
+    background: -o-linear-gradient(top, #efefef 0%,#ffffff 79%);
+    background: -ms-linear-gradient(top, #efefef 0%,#ffffff 79%);
+    background: linear-gradient(top, #efefef 0%,#ffffff 79%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#ffffff',GradientType=0 );
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    color: #333333;
+    font-family: 'Lucida Sans Unicode','Lucida Grande',Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding: 5px 6px;
+    width: 100%;
+}
+#nocline-mw-r-b
+{
+    bottom: 50px;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    overflow: auto;
+}
+#nocline-mw-r
+{    
+    background: white;
+    border-radius: 5px 5px 5px 5px;
+    bottom: 5px;
+    right: 5px;
+    top: 5px;
+    width: 194px;
+    display: none;
+}
+
+form input{
+    display: block;
+}
+form span.required{
+    color: #aa0000;
+}
+.imbtn:hover {
+    opacity: 1;
+}
+.imbtn {
+    opacity: 0.3;
+    cursor: pointer;
+}
+#nocline-mw-sc {
+    float: right;
+}
+body #nocline-mw-stc {
+    color: #777777;
+    font-size: 13px;
+    margin: 5px 0 10px;
+    padding: 0 10px 3px;
+    position: static;
+    text-align: left;
+    text-shadow: 1px 1px #FFFFFF;
+}
+#nocline-mw-z {
+    bottom: 5px;
+    right: 10px;
+    left: 10px;
+    text-align: center;
+}
+#nocline-mw-z li{
+    display: inline-block;
+    margin-left: 5px;
+}
+#nocline-mw-z li:first-of-type{
+    margin-left: 0;
+}
+#nocline-mw-r-a{
+    top: 40px;
+    left: 85px;
+    position: absolute;
+    display: none;
+}
+#nocline-mw-r-c{
+    position: absolute;
+    right: 4px;
+    top: 2px;
+    z-index: 20;    
+}
+body #nocline-mw-r-b select.error, body #nocline-mw-r-b input.error
+{
+    border-color: #D66B6B;
+    box-shadow: 0 0 5px #D66B6B;
+}
