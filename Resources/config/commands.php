@@ -37,4 +37,11 @@ return array
             'format'                => 'self::getListOfConfigFormat'
         ),
     ),
+    'doctrine:mapping:import'=>array
+    (
+        'data_methods'=>array
+        (
+            'bundle'                => 'self::getListOfBundles'
+        ),
+    ),
 );

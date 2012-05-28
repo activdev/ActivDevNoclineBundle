@@ -11,14 +11,16 @@
 
 namespace ActivDev\NoclineBundle\Services;
 
+use Symfony\Component\HttpKernel\Kernel;
 use ActivDev\NoclineBundle\Services\Util\BaseCommandConfiguration;
 
 class CommandConfiguration extends BaseCommandConfiguration
 {
     protected $config;
     
-    public function __construct()
+    public function __construct(Kernel $kernel)
     {
+        $this->kernel = $kernel;
         $this->config = require  __DIR__ . '/../Resources/config/commands.php';
     }
     

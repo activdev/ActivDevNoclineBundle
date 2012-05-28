@@ -11,9 +11,17 @@
 
 namespace ActivDev\NoclineBundle\Services\Util;
 
+use Symfony\Component\HttpKernel\Kernel;
+
 abstract class BaseCommandConfiguration
 {
-
+    protected $kernel;
+    
+    public function __construct(Kernel $kernel)
+    {
+        $this->kernel = $kernel;
+    }
+    
     function getListOfConfigFormat()
     {
         return array
@@ -23,6 +31,22 @@ abstract class BaseCommandConfiguration
             'php'        => 'php',
             'xml'        => 'xml',
         );
+    }
+
+    function getListOfBundles()
+    {
+        $bundles = array();
+        $srcDir  = realpath($this->kernel->getRootDir().'/../src');
+        
+        foreach($this->kernel->getBundles() as $k => $v)
+        {
+            if(preg_match("#^$srcDir#", $v->getPath()))
+            {
+                $bundles[$k] = $k;
+            }
+        }
+        
+        return $bundles;
     }
 
 }

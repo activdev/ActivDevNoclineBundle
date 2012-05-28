@@ -26,7 +26,9 @@
             <argument type="service" id="templating.engine.twig" />
         </service>
         
-        <service id="nocline.command_configuration" class="%nocline.command_configuration.class%"></service>
+        <service id="nocline.command_configuration" class="%nocline.command_configuration.class%">
+            <argument type="service" id="kernel" />            
+        </service>
         
         <service id="nocline.command_type" class="%nocline.command_type.class%">
             <argument type="service" id="nocline.command_configuration" />            
