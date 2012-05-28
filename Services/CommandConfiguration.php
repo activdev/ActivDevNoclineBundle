@@ -36,7 +36,7 @@ class CommandConfiguration extends BaseCommandConfiguration
             return $this->config[$command];
         }
         
-        return null;
+        return array();
     }
     
     public function getJavascript($command) 
@@ -52,6 +52,23 @@ class CommandConfiguration extends BaseCommandConfiguration
         }
         
         return null;
+    }
+    
+    public function isArgOptRequired($command, $arg_opt, $isRequired) 
+    {
+        if($config = $this->getConfiguration($command))
+        {
+            if(isset($config['validation.not_required']) && in_array($arg_opt, $config['validation.not_required']))
+            {
+                return false;
+            }
+            if(isset($config['validation.required']) && in_array($arg_opt, $config['validation.required']))
+            {
+                return true;
+            }
+        }
+        
+        return $isRequired;
     }
     
     public function getArgOptData($command, $arg_opt) 

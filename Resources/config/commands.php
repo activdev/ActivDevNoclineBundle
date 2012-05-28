@@ -43,5 +43,14 @@ return array
         (
             'bundle'                => 'self::getListOfBundles'
         ),
+        'validation.not_required'=>array('filter'),
+    ),
+    'doctrine:mapping:convert'=>array
+    (
+        'data_methods'=>array
+        (
+            'to-type'                => 'self::getListOfConfigFormat'
+        ),
+        'validation.not_required'=>array('filter'),
     ),
 );

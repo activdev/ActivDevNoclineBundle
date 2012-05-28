@@ -144,15 +144,8 @@ function addRemoveMultipleinput()
         var $parent = jQuery(this).parent();
         var $input  = jQuery(this).prev();
         
-        jQuery('<input class="nocline-text-add" type="text" name="'+$input.attr('name').replace('[]', '')+'[]">'+
+        jQuery('<input class="nocline-text-add" type="text" name="'+$input.attr('name')+'">'+
                '<span class="nocline-span-del">-</span>').appendTo($parent);
-
-        //try to append [] to the end of the first field name
-        var jInput = jQuery(this).parent().find('input:first');
-        if(!/\[\]$/.test(jInput.attr('name')))
-        {
-            jInput.attr('name', jInput.attr('name') + '[]');
-        }
     });
 }
 

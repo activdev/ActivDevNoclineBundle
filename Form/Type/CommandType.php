@@ -44,10 +44,10 @@ class CommandType extends AbstractType
             $field = $this->getFieldTypeAndOptions($definition);            
             $builder->add($definition['name'], $field['type'], $field['options']);
             
-            if($definition['validation']['required'])
-            {
-                $this->requiredFields[] = $definition['name'];
-            }
+//            if($definition['validation']['required'])
+//            {
+//                $this->requiredFields[] = $definition['name'];
+//            }
         }
         
         $this->setValidations($builder);
@@ -58,23 +58,32 @@ class CommandType extends AbstractType
 
     public function getFieldTypeAndOptions($definition)
     {
+        //TODO remove this behaviour
+        //strip the "--" in the name because of the names of options start with, 
+        //for use with the configuration mapping.
+        //As a consequence, if a command defines the same name for an argument and an option were are in trouble !
+        $strippedName    = str_replace('--', '', $definition['name']);
+        $data            = $this->commandConfiguration->getArgOptData($this->definition['command'], $strippedName);
+        $isFieldRequired = $this->commandConfiguration->isArgOptRequired($this->definition['command'], 
+                                    $strippedName, $definition['validation']['required']);
+        
+        // for server side validation 
+        if($isFieldRequired)
+        {
+            $this->requiredFields[] = $definition['name'];
+        }
+
         $field = array 
         (
             'options' => array 
              (
                 'attr'     => array('title' => $definition['help']), 
                 'label'    => $definition['label'], 
-                'required' => $definition['validation']['required']
+                'required' => $isFieldRequired, // for html validation
             ), 
             'type'    => $definition['type'],
         );
         
-        //TODO remove this behaviour
-        //strip the "--" in the name because of the names of options start with, 
-        //for use with the configuration mapping.
-        //As a consequence, if a command defines the same name for an argument and an option were are in trouble !
-        $strippedName = str_replace('--', '', $definition['name']);
-        $data = $this->commandConfiguration->getArgOptData($this->definition['command'], $strippedName);
        
         if($definition['value'])
         {
@@ -106,6 +115,7 @@ class CommandType extends AbstractType
     
     protected function setValidations(FormBuilder &$builder)
     { 
+        //print_r($this->requiredFields);
         $requiredFields = $this->requiredFields;
         $builder->addValidator(new CallbackValidator(function(\Symfony\Component\Form\FormInterface $form) use($requiredFields) 
         {

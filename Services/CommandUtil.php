@@ -67,14 +67,17 @@ class CommandUtil
                     {
                         if(is_array($value))
                         {
-                            foreach($value as $v)
+                            foreach($value as $val)
                             {
-                                $params[] = $name.'='.trim($v);
+                                if($v = trim($val))
+                                {
+                                    $params[] = $name.'='.$v;
+                                }
                             }
                         }
-                        else
+                        elseif($v = trim($value))
                         {
-                            $params[] = $name.'='.trim($value);
+                            $params[] = $name.'='.$v;
                         }
                     }
                 }

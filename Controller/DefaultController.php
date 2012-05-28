@@ -62,11 +62,9 @@ class DefaultController extends Controller
         if ($form->isValid()) 
         {
             $resp = new Response($this->get('nocline.command_util')->run($this->commandDefinition, $command), 200);
-            $resp->send();
-            // nothing else is to be executed so just die            
-            die;
+            $resp->send(); die;          
         }
-        
+
         throw new ValidatorException('The command form is not valid !');
     }
     
