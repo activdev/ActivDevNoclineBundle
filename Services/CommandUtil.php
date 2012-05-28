@@ -55,9 +55,9 @@ class CommandUtil
     {
         foreach($definition[$type] as $name => $def)
         {
-            if(isset($values[$name]) && ($value = trim($values[$name])))
+            if(isset($values[$name]) && ($value = $values[$name]))
             {
-                if($type == 'opts' )
+                if($type == 'opts')
                 {
                     if($value === '1' && $definition[$type][$name]['type'] == 'checkbox') 
                     {
@@ -65,12 +65,22 @@ class CommandUtil
                     }
                     else
                     {
-                        $params[] = $name.'='.$value;
+                        if(is_array($value))
+                        {
+                            foreach($value as $v)
+                            {
+                                $params[] = $name.'='.trim($v);
+                            }
+                        }
+                        else
+                        {
+                            $params[] = $name.'='.trim($value);
+                        }
                     }
                 }
                 else
                 {
-                    $params[] = $value;
+                    $params[] = trim($value);
                 }
             }
         }

@@ -109,10 +109,19 @@ class CommandType extends AbstractType
         $requiredFields = $this->requiredFields;
         $builder->addValidator(new CallbackValidator(function(\Symfony\Component\Form\FormInterface $form) use($requiredFields) 
         {
+            
             foreach($requiredFields as $field)
             {
                 $data = $form->get($field)->getData();
-                if (!trim($data)) 
+                if(is_array($data))
+                {
+                    //only the first value is required
+                    if (!trim($data[0])) 
+                    {
+                        $form->get($field)->addError(new \Symfony\Component\Form\FormError("The field is required."));
+                    }
+                }
+                elseif (!trim($data)) 
                 {
                     $form->get($field)->addError(new \Symfony\Component\Form\FormError("The field is required."));
                 }

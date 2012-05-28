@@ -122,7 +122,6 @@ function callForm()
                 
                 //set auto focus on the first field
                 jQuery('#command div input, #command div select').first().focus();
-                //setTimeout(function() { jQuery('#command div input, #command div select').first().focus(); }, 0);
             }
         });
         
@@ -145,8 +144,15 @@ function addRemoveMultipleinput()
         var $parent = jQuery(this).parent();
         var $input  = jQuery(this).prev();
         
-        jQuery('<input class="nocline-text-add" type="text" name="'+$input.attr('name')+'[]">'+
+        jQuery('<input class="nocline-text-add" type="text" name="'+$input.attr('name').replace('[]', '')+'[]">'+
                '<span class="nocline-span-del">-</span>').appendTo($parent);
+
+        //try to append [] to the end of the first field name
+        var jInput = jQuery(this).parent().find('input:first');
+        if(!/\[\]$/.test(jInput.attr('name')))
+        {
+            jInput.attr('name', jInput.attr('name') + '[]');
+        }
     });
 }
 
