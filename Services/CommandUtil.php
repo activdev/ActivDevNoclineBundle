@@ -192,7 +192,7 @@ class CommandUtil
             }
         }
         
-        $elementDefinition['validation']['required'] = (string) $element->attributes()->is_required || (string) $element->attributes()->is_value_required;
+        $elementDefinition['validation']['required'] = (string) $element->attributes()->is_required; // || (string) $element->attributes()->is_value_required;
 
         return $elementDefinition;
     }

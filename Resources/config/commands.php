@@ -37,13 +37,27 @@ return array
             'format'                => 'self::getListOfConfigFormat'
         ),
     ),
+    'doctrine:generate:entity'=>array
+    (
+        'data_methods'=>array
+        (
+            'format'                => 'self::getListOfConfigFormat'
+        ),
+    ),
+    'doctrine:generate:entities'=>array
+    (
+        'data_methods'=>array
+        (
+            'name'                  => 'self::getListOfBundles'
+        ),
+    ),
     'doctrine:mapping:import'=>array
     (
         'data_methods'=>array
         (
             'bundle'                => 'self::getListOfBundles'
         ),
-        'validation.not_required'=>array('filter'),
+        //'validation.not_required'=>array('filter'),
     ),
     'doctrine:mapping:convert'=>array
     (
@@ -51,6 +65,6 @@ return array
         (
             'to-type'                => 'self::getListOfConfigFormat'
         ),
-        'validation.not_required'=>array('filter'),
+        //'validation.not_required'=>array('filter'),
     ),
 );
