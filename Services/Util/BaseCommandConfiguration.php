@@ -15,29 +15,30 @@ use Symfony\Component\HttpKernel\Kernel;
 
 abstract class BaseCommandConfiguration
 {
+
     protected $kernel;
-    
+
     public function __construct(Kernel $kernel)
     {
         $this->kernel = $kernel;
     }
-    
+
     function getListOfConfigFormat()
     {
         return array
-        (
+            (
             'annotation' => 'annotation',
-            'yml'        => 'yml',
-            'php'        => 'php',
-            'xml'        => 'xml',
+            'yml' => 'yml',
+            'php' => 'php',
+            'xml' => 'xml',
         );
     }
 
     function getListOfBundles()
     {
         $bundles = array();
-        $srcDir  = realpath($this->kernel->getRootDir().'/../src');
-        
+        $srcDir = $this->getSrcDir();
+
         foreach($this->kernel->getBundles() as $k => $v)
         {
             if(preg_match("#^$srcDir#", $v->getPath()))
@@ -45,8 +46,38 @@ abstract class BaseCommandConfiguration
                 $bundles[$k] = $k;
             }
         }
-        
+
         return $bundles;
+    }
+
+    function getListOfEntities()
+    {
+        $bundleEntities = array();
+        $bundles = glob($this->getSrcDir() . '/*/*Bundle/*Bundle.php');
+        
+        foreach($bundles as $bundle)
+        {
+            $bundllName = basename($bundle, '.php');
+            $entityDir  = dirname($bundle).'/Entity';
+
+            if(!is_dir($entityDir))
+            {
+                continue;
+            }
+
+            foreach(glob($entityDir.'/*.php') as $entity)
+            {
+                $name = basename($entity, '.php');
+                $bundleEntities[$bundllName.':'.$name] = $bundllName.':'.$name;
+            }
+        }
+        
+        return $bundleEntities;
+    }
+
+    protected function getSrcDir()
+    {
+        return realpath($this->kernel->getRootDir() . '/../src');
     }
 
 }

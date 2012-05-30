@@ -32,9 +32,11 @@ return array
     ),
     'doctrine:generate:crud'=>array
     (
+        'javascript'                => 'route_name',
         'data_methods'=>array
         (
-            'format'                => 'self::getListOfConfigFormat'
+            'format'                => 'self::getListOfConfigFormat',
+            'entity'                => 'self::getListOfEntities',
         ),
     ),
     'doctrine:generate:entity'=>array
