@@ -2,7 +2,8 @@ Symfony2 Nocline Bundle
 =======================
 
 The developper friendly and fast way to run Symfony2 commands, through a web interface.
-No need to type long command lines, or memorize commands arguments and 
+No need to type long command lines, or memorize commands arguments and options ...
+
 ![Nocline bundle UI](http://nocline.activdev.com/images/screen.gif "Nocline bundle UI")
 
 Install instructions
