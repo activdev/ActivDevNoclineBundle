@@ -63,9 +63,11 @@ class CommandType extends AbstractType
         //for use with the configuration mapping.
         //As a consequence, if a command defines the same name for an argument and an option were are in trouble !
         $strippedName    = str_replace('--', '', $definition['name']);
-        $data            = $this->commandConfiguration->getArgOptData($this->definition['command'], $strippedName);
-        $isFieldRequired = $this->commandConfiguration->isArgOptRequired($this->definition['command'], 
-                                    $strippedName, $definition['validation']['required']);
+        $isFieldRequired = $this->commandConfiguration->isArgOptRequired(
+            $this->definition['command'], 
+            $strippedName, $definition['validation']['required']
+        );
+        $data = $this->commandConfiguration->getArgOptData($this->definition['command'], $strippedName, $isFieldRequired);
         
         // for server side validation 
         if($isFieldRequired)

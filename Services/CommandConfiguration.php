@@ -31,12 +31,49 @@ class CommandConfiguration extends BaseCommandConfiguration
     
     protected function getConfiguration($command) 
     {
-        if(isset($this->config[$command]))
-        {
-            return $this->config[$command];
-        }
+        //1. the global config namespace
+        $conf = $this->config['*'];
         
-        return array();
+        foreach ($this->config as $key => $config) 
+        {
+            //2. get wildcarded hooks config
+            if(strpos($key, '*') != false)
+            {
+                $key = str_replace('*', '', $key);
+                if(strpos($command, $key) !== false)
+                {
+                    $conf = array_merge($conf, $config);
+                }
+            }
+            
+            //3. get specific hook config
+            if(isset($this->config[$command]))
+            {
+                $conf = array_merge($conf, $this->config[$command]);
+            }
+        }
+       
+        return $conf;
+    }
+    
+    protected function getArgOptAutoData($arg_opt, $isRequired) 
+    {
+        //watch for those args/opts for some auto magic to happen:
+        //bundle, entity
+        //echo $arg_opt.' - '.$isRequired."<br>\n";
+        if($isRequired)
+        {
+            if($arg_opt == 'bundle')
+            {
+                return parent::getListOfBundles();
+            }
+            if($arg_opt == 'entity')
+            {
+                return parent::getListOfEntities();
+            }
+        }
+
+        return null;
     }
     
     public function getJavascript($command) 
@@ -71,13 +108,14 @@ class CommandConfiguration extends BaseCommandConfiguration
         return $isRequired;
     }
     
-    public function getArgOptData($command, $arg_opt) 
+    public function getArgOptData($command, $arg_opt, $isRequired) //for evolution replace isRequired with all validation rules
     {
+        $data = $this->getArgOptAutoData($arg_opt, $isRequired);
+        
         if(!($config = $this->getConfiguration($command)))
         {
-            return null;
+            return $data;
         }
-        $data = null;
         
         if(isset($config['data_methods']) && isset($config['data_methods'][$arg_opt]))
         {

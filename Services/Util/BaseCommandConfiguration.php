@@ -68,7 +68,10 @@ abstract class BaseCommandConfiguration
             foreach(glob($entityDir.'/*.php') as $entity)
             {
                 $name = basename($entity, '.php');
-                $bundleEntities[$bundllName.':'.$name] = $bundllName.':'.$name;
+                if(!preg_match('#Repository$#', $name))
+                {
+                    $bundleEntities[$bundllName.':'.$name] = $bundllName.':'.$name;
+                }
             }
         }
         

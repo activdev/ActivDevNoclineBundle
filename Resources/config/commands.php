@@ -11,6 +11,21 @@
 
 return array
 (
+    
+    '*'=>array //Global hooks go here, must not be removed.
+    (
+//        'data_methods'=>array
+//        (
+//            'bundle'                => 'self::getListOfBundles'
+//        ),          
+    ),
+//    'devkit:*'=>array
+//    (
+//        'data_methods'=>array
+//        (
+//            'bundle'                => 'self::getListOfBundles'
+//        ),          
+//    ),
     'assets:install'=>array
     (
         'data'=>array
