@@ -38,7 +38,7 @@ class DefaultControllerTest extends WebTestCase
         $crawler  = $client->request('GET', '/_nocline_/form/Doctrine/mapping:convert');
         $response = json_decode($client->getResponse()->getContent(), true);
         //I have the javascript tag
-        $this->assertRegExp('#<span class=\"nocline-span-add\">\+<\/span>#', $response['html']);
+        $this->assertRegExp('#<span class=\"nocline-span-add\">#', $response['html']);
         
         
         /* successfully execute a command and see if I get the right successful output */
