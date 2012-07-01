@@ -28,9 +28,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $commands_list = $this->get('nocline.command_util')->getListAsArray();
-        
-        return array ('list' => $commands_list);
+        return array ('list' => $this->get('nocline.command_util')->getListAsArray());
     }
     
     /**
@@ -38,10 +36,9 @@ class DefaultController extends Controller
      */
     public function formAction($commandNamespace, $commandTitle)
     {
-        $form    = $this->getCommandForm($commandNamespace, $commandTitle);
         $content = $this->get('templating')->render('ActivDevNoclineBundle:Default:form.html.twig', array
         (
-            'form' => $form->createView()
+            'form' => $this->getCommandForm($commandNamespace, $commandTitle)->createView()
         ));
 
         return new Response(json_encode(array
@@ -61,8 +58,7 @@ class DefaultController extends Controller
         $form->bindRequest($request);
         if ($form->isValid()) 
         {
-            $resp = new Response($this->get('nocline.command_util')->run($this->commandDefinition, $command), 200);
-            $resp->send(); die;          
+            return new Response($this->get('nocline.command_util')->run($this->commandDefinition, $command), 200);
         }
 
         throw new ValidatorException('The command form is not valid !');

@@ -1,6 +1,25 @@
 
 TODO_PRIVATE
 
-#for alpha no tests yet
-Tests/*
+/.project
+/.buildpath
+/.settings/
+/composer.phar
+/php-cs-fixer.phar
+/vendor
+/nbproject
+/Resources/doc/generated
+/test-coverage
+
+*.tmp
+*.log*
+*.swp
+*.bak
+*.DS_Store
+.#*
+
+phpunit.xml
+
+.vagrant
+Vagrantfile
 

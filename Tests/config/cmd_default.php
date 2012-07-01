@@ -14,18 +14,20 @@ return array
     
     '*'=>array //Global hooks go here, must not be removed.
     (
-//        'data_methods'=>array
-//        (
-//            'bundle'                => 'self::getListOfBundles'
-//        ),          
+        // for test purposes, not in the normal commands.php file
+        'data'=>array
+        (
+            'em'              => 'default'
+        ),          
     ),
-//    'devkit:*'=>array
-//    (
-//        'data_methods'=>array
-//        (
-//            'bundle'                => 'self::getListOfBundles'
-//        ),          
-//    ),
+    'router:*'=>array
+    (
+        'data'=>array
+        (
+            'base-uri'              => '/test-uri',
+            'name'                  => 'a_name',
+        ),          
+    ),
     'assets:install'=>array
     (
         'data'=>array

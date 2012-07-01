@@ -18,19 +18,14 @@ abstract class BaseCommandConfiguration
 
     protected $kernel;
 
-    public function __construct(Kernel $kernel)
-    {
-        $this->kernel = $kernel;
-    }
-
     function getListOfConfigFormat()
     {
         return array
-            (
+        (
+            'yml'        => 'yml',
+            'php'        => 'php',
+            'xml'        => 'xml',
             'annotation' => 'annotation',
-            'yml' => 'yml',
-            'php' => 'php',
-            'xml' => 'xml',
         );
     }
 

@@ -21,14 +21,14 @@ class CommandConfiguration extends BaseCommandConfiguration
     public function __construct(Kernel $kernel)
     {
         $this->kernel = $kernel;
-        $this->config = require  __DIR__ . '/../Resources/config/commands.php';
+        $this->setConfigurationFile();
     }
     
-    public function hasConfiguration($command) 
+    public function setConfigurationFile($configFile = null)
     {
-        return $this->getConfiguration($command) !== null;
+        $this->config = require $configFile ?: __DIR__ . '/../Resources/config/commands.php';
     }
-    
+       
     protected function getConfiguration($command) 
     {
         //1. the global config namespace
@@ -56,11 +56,16 @@ class CommandConfiguration extends BaseCommandConfiguration
         return $conf;
     }
     
+    /**
+     * Automatically fill fields named "bundle" and "entity" with
+     * the list of bundles/entities if they are required
+     * 
+     * @param string $arg_opt
+     * @param string $isRequired
+     * @return null | array
+     */
     protected function getArgOptAutoData($arg_opt, $isRequired) 
     {
-        //watch for those args/opts for some auto magic to happen:
-        //bundle, entity
-        //echo $arg_opt.' - '.$isRequired."<br>\n";
         if($isRequired)
         {
             if($arg_opt == 'bundle')
@@ -91,22 +96,24 @@ class CommandConfiguration extends BaseCommandConfiguration
         return null;
     }
     
-    public function isArgOptRequired($command, $arg_opt, $isRequired) 
-    {
-        if($config = $this->getConfiguration($command))
-        {
-            if(isset($config['validation.not_required']) && in_array($arg_opt, $config['validation.not_required']))
-            {
-                return false;
-            }
-            if(isset($config['validation.required']) && in_array($arg_opt, $config['validation.required']))
-            {
-                return true;
-            }
-        }
-        
-        return $isRequired;
-    }
+//    // Maybe it will later be interesting to implement this
+//    public function isArgOptRequired($command, $arg_opt, $isRequired) 
+//    {
+//        if($config = $this->getConfiguration($command))
+//        {
+//            if(isset($config['validation.not_required']) && in_array($arg_opt, $config['validation.not_required']))
+//            {
+//                return false;
+//            }
+//            if(isset($config['validation.required']) && in_array($arg_opt, $config['validation.required']))
+//            {
+//                return true;
+//            }
+//        }
+//        
+//        
+//        return $isRequired;
+//    }
     
     public function getArgOptData($command, $arg_opt, $isRequired) //for evolution replace isRequired with all validation rules
     {
