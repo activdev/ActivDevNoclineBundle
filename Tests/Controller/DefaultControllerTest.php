@@ -34,9 +34,11 @@ class DefaultControllerTest extends WebTestCase
         $this->assertRegExp('#<form#', $response['html']);
         
         
-        // Get a command form that requires load a multiple input text ... ie. doctrine commands
-               
-        // Get a command form that requires load an auto configuration ...
+        /* Get a command form that requires load a multiple input text */
+        $crawler  = $client->request('GET', '/_nocline_/form/Doctrine/mapping:convert');
+        $response = json_decode($client->getResponse()->getContent(), true);
+        //I have the javascript tag
+        $this->assertRegExp('#<span class=\"nocline-span-add\">\+<\/span>#', $response['html']);
         
         
         /* successfully execute a command and see if I get the right successful output */
