@@ -17,7 +17,8 @@
     border-top: 1px dashed #888888 !important;
     letter-spacing: 0.5px !important;
     line-height: 18px !important;
-    background: rgba(0,0,0,0.4) !important;
+    background: transparent !important;
+    margin: 0 !important;
 }
 #nocline-d-w-o-c pre:first-of-type
 {
@@ -34,9 +35,16 @@
     cursor: pointer;
     cursor: hand;
 }
+#nocline-d-w-o
+{
+    background: rgba(0,0,0,0.8) !important;
+}
+#nocline-d-w-o-c
+{
+    background: transparent !important;    
+}
 #nocline-d-w-o-c 
 {
-    background: rgba(0,0,0,0.75) !important;
     border-top: 2px solid !important;
     height: 0;
     overflow: auto !important;
