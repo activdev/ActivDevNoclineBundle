@@ -144,8 +144,8 @@ function addRemoveMultipleinput()
         var $parent = jQuery(this).parent();
         var $input  = jQuery(this).prev();
         
-        jQuery('<input class="nocline-text-add" type="text" name="'+$input.attr('name')+'">'+
-               '<span class="nocline-span-del">-</span>').appendTo($parent);
+        jQuery('<span class="nocline-span-del"><span>-</span></span>'+
+               '<input class="nocline-text-add" type="text" name="'+$input.attr('name')+'">').appendTo($parent);
     });
 }
 
