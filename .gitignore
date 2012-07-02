@@ -16,7 +16,6 @@ TODO_PRIVATE
 *.swp
 *.bak
 *.DS_Store
-.#*
 
 phpunit.xml
 
