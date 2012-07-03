@@ -6,13 +6,13 @@ $vendorDir      = __DIR__;
 $autoloadFile   = $vendorDir . '/Symfony/app/autoload.php';
 $routingFile    = $vendorDir . '/Symfony/app/config/routing.yml';
 $appKernelFile  = $vendorDir . '/Symfony/app/AppKernel.php';
+$symfonyArchive = 'Symfony_Standard_Vendors_2.0.15.tgz';
 
 //download sf2
-//`wget http://symfony.com/download?v=Symfony_Standard_Vendors_2.0.15.tgz`;
+echo `wget -O $symfonyArchive http://symfony.com/download?v=$symfonyArchive`;
 
-`cp /home/bruno/Downloads/Symfony_Standard_Vendors_2.0.14.tgz $vendorDir/`;
 // extract
-`tar -xzf vendor/Symfony_Standard_Vendors_2.0.14.tgz -C $vendorDir`;
+echo `tar -xzf vendor/$symfonyArchive -C $vendorDir`;
 
 // install the bundle in the AppKernel.php
 file_put_contents($appKernelFile, str_replace(
@@ -37,8 +37,6 @@ ActivDevNoclineBundle:
     prefix:   /_nocline_    
 ");
 
-
-
 //make dirs match psr-0
-`mkdir -p $buildDir/ActivDev`;
-`cp -rf $buildDir/activdev/ActivDevNoclineBundle $buildDir/ActivDev/NoclineBundle`;
+echo `mkdir -p $buildDir/ActivDev`;
+echo `cp -rf $buildDir/activdev/ActivDevNoclineBundle $buildDir/ActivDev/NoclineBundle`;
