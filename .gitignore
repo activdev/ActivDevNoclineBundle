@@ -6,7 +6,6 @@ TODO_PRIVATE
 /.settings/
 /composer.phar
 /php-cs-fixer.phar
-/vendor
 /nbproject
 /Resources/doc/generated
 /test-coverage

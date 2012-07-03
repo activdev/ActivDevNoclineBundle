@@ -1,0 +1,125 @@
+[![Build Status](https://secure.travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](http://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+
+Using worker: ppp3.worker.travis-ci.org:travis-php-2
+
+2
+
+3$ cd ~/builds
+
+4$ git clone --depth=100 --quiet git://github.com/activdev/ActivDevNoclineBundle.git activdev/ActivDevNoclineBundle
+
+5$ cd activdev/ActivDevNoclineBundle
+
+6$ git checkout -qf 43b567015e031c33794da860a64b96e8810d58e5
+
+7$ export TRAVIS_PHP_VERSION=5.3
+
+8$ phpenv global 5.3
+
+9$ php --version
+
+10PHP 5.3.14 (cli) (built: Jun 28 2012 08:25:07)
+
+11Copyright (c) 1997-2012 The PHP Group
+
+12Zend Engine v2.3.0, Copyright (c) 1998-2012 Zend Technologies
+
+13 with Xdebug v2.2.0, Copyright (c) 2002-2012, by Derick Rethans
+
+14$ phpunit
+
+15PHP Warning: require_once(/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/../../../../symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php): failed to open stream: No such file or directory in /home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php on line 3
+
+16PHP Stack trace:
+
+17PHP 1. {main}() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:0
+
+18PHP 2. PHPUnit_TextUI_Command::main() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:46
+
+19PHP 3. PHPUnit_TextUI_Command->run() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:130
+
+20PHP 4. PHPUnit_TextUI_Command->handleArguments() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:139
+
+21PHP 5. PHPUnit_TextUI_Command->handleBootstrap() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:620
+
+22PHP 6. PHPUnit_Util_Fileloader::checkAndLoad() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:867
+
+23PHP 7. PHPUnit_Util_Fileloader::load() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:79
+
+24PHP 8. include_once() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:95
+
+25
+
+26Warning: require_once(/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/../../../../symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php): failed to open stream: No such file or directory in /home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php on line 3
+
+27
+
+28Call Stack:
+
+29 0.0002 324604 1. {main}() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:0
+
+30 0.0142 662340 2. PHPUnit_TextUI_Command::main() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:46
+
+31 0.0142 662748 3. PHPUnit_TextUI_Command->run() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:130
+
+32 0.0142 662748 4. PHPUnit_TextUI_Command->handleArguments() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:139
+
+33 0.0222 1076708 5. PHPUnit_TextUI_Command->handleBootstrap() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:620
+
+34 0.0229 1087316 6. PHPUnit_Util_Fileloader::checkAndLoad() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:867
+
+35 0.0230 1087424 7. PHPUnit_Util_Fileloader::load() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:79
+
+36 0.0231 1089360 8. include_once('/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php') /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:95
+
+37
+
+38PHP Fatal error: require_once(): Failed opening required '/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/../../../../symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php' (include_path='.:/home/vagrant/.phpenv/versions/5.3.14/pear:/home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php') in /home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php on line 3
+
+39PHP Stack trace:
+
+40PHP 1. {main}() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:0
+
+41PHP 2. PHPUnit_TextUI_Command::main() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:46
+
+42PHP 3. PHPUnit_TextUI_Command->run() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:130
+
+43PHP 4. PHPUnit_TextUI_Command->handleArguments() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:139
+
+44PHP 5. PHPUnit_TextUI_Command->handleBootstrap() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:620
+
+45PHP 6. PHPUnit_Util_Fileloader::checkAndLoad() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:867
+
+46PHP 7. PHPUnit_Util_Fileloader::load() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:79
+
+47PHP 8. include_once() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:95
+
+48
+
+49Fatal error: require_once(): Failed opening required '/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/../../../../symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php' (include_path='.:/home/vagrant/.phpenv/versions/5.3.14/pear:/home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php') in /home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php on line 3
+
+50
+
+51Call Stack:
+
+52 0.0002 324604 1. {main}() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:0
+
+53 0.0142 662340 2. PHPUnit_TextUI_Command::main() /home/vagrant/.phpenv/versions/5.3.14/bin/phpunit:46
+
+54 0.0142 662748 3. PHPUnit_TextUI_Command->run() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:130
+
+55 0.0142 662748 4. PHPUnit_TextUI_Command->handleArguments() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:139
+
+56 0.0222 1076708 5. PHPUnit_TextUI_Command->handleBootstrap() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:620
+
+57 0.0229 1087316 6. PHPUnit_Util_Fileloader::checkAndLoad() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/TextUI/Command.php:867
+
+58 0.0230 1087424 7. PHPUnit_Util_Fileloader::load() /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:79
+
+59 0.0231 1089360 8. include_once('/home/vagrant/builds/activdev/ActivDevNoclineBundle/Tests/bootstrap.php') /home/vagrant/.phpenv/versions/5.3.14/share/pyrus/.pear/php/PHPUnit/Util/Fileloader.php:95
+
+60
+
+61
+
+62Done. Build script exited with: 1

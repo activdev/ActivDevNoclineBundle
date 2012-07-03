@@ -59,11 +59,6 @@ class CommandConfigurationTest extends BaseTestCase
         $data = $this->commandConfiguration->getArgOptData('doctrine:mapping:import', 'bundle', false);
         $this->assertTrue(empty($data));
         
-        // entity arg should not contain the list of bundles becouse it is not required
-        $data = $this->commandConfiguration->getArgOptData('doctrine:generate:crud', 'entity', false);
-        $this->assertTrue(is_array($data) && count($data) > 0);
-        
-        
         /* Data from config in Resources/config/commands.php */
         
         // get "data" config for a arg/opt
