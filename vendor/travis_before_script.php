@@ -9,10 +9,10 @@ $appKernelFile  = $vendorDir . '/Symfony/app/AppKernel.php';
 $symfonyArchive = 'Symfony_Standard_Vendors_2.0.15.tgz';
 
 //download sf2
-echo `wget -O $symfonyArchive http://symfony.com/download?v=$symfonyArchive`;
+echo `wget -O vendor/$symfonyArchive http://symfony.com/download?v=$symfonyArchive`;
 
 // extract
-echo `mv $symfonyArchive vendor/ && tar -xzf vendor/$symfonyArchive -C $vendorDir`;
+echo `tar -xzf vendor/$symfonyArchive -C $vendorDir`;
 
 // install the bundle in the AppKernel.php
 file_put_contents($appKernelFile, str_replace(
