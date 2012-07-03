@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use ActivDev\NoclineBundle\Services\HistoryManager;
 
 class DefaultController extends Controller
 {
@@ -54,6 +55,8 @@ class DefaultController extends Controller
     {
         $command = $request->request->get('command');
         $form    = $this->getCommandForm($command['commandNamespace'], $command['commandTitle']);
+
+        $this->get('nocline.command_history')->saveCommandParamters($command);
         
         $form->bindRequest($request);
         if ($form->isValid()) 
@@ -75,6 +78,7 @@ class DefaultController extends Controller
             $this->commandDefinition
         );
 
-        return $this->createForm($commandType);        
+        return $this->createForm($commandType, 
+               $this->get('nocline.command_history')->getCommandParamters($commandNamespace, $commandTitle));        
     }
 }

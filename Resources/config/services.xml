@@ -17,6 +17,8 @@
     </parameters>
 
     <services>
+        <service id="nocline.command_history" class="ActivDev\NoclineBundle\Services\HistoryManager"></service>
+        
         <service id="form.type.textmultiple" class="ActivDev\NoclineBundle\Form\Type\TextmultipleType">
             <tag name="form.type" alias="textmultiple" />
         </service>

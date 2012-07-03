@@ -9,6 +9,7 @@ TODO_PRIVATE
 /nbproject
 /Resources/doc/generated
 /test-coverage
+/Cache/commands/*
 
 *.tmp
 *.log*
