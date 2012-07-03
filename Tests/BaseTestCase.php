@@ -2,8 +2,6 @@
 
 namespace ActivDev\NoclineBundle\Tests;
 
-require_once __DIR__ . "/../../../../../app/AppKernel.php";
-
 use ActivDev\NoclineBundle\Services\CommandConfiguration;
 
 class BaseTestCase extends \PHPUnit_Framework_TestCase
