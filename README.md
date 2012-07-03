@@ -1,7 +1,7 @@
 Symfony2 Nocline Bundle
 =======================
 
-[![Build Status](https://secure.travis-ci.org/[activdev]/[ActivDevNoclineBundle].png)](http://travis-ci.org/[activdev]/[ActivDevNoclineBundle])
+[![Build Status](https://secure.travis-ci.org/activdev/ActivDevNoclineBundle.png)](http://travis-ci.org/activdev/ActivDevNoclineBundle)
 
 Run Symfony2 commands, through a web interface. 
 All registered commands are listed and each exposes a intuitive form that assists you in its execution.
