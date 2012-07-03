@@ -12,7 +12,7 @@ $symfonyArchive = 'Symfony_Standard_Vendors_2.0.15.tgz';
 echo `wget -O $symfonyArchive http://symfony.com/download?v=$symfonyArchive`;
 
 // extract
-echo `tar -xzf vendor/$symfonyArchive -C $vendorDir`;
+echo `mv $symfonyArchive vendor/ && tar -xzf vendor/$symfonyArchive -C $vendorDir`;
 
 // install the bundle in the AppKernel.php
 file_put_contents($appKernelFile, str_replace(
