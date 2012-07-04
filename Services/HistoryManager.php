@@ -35,7 +35,8 @@ class HistoryManager
         $commandNamespace = $command['commandNamespace'];
         $commandTitle     = $command['commandTitle'];
         
-        unset($command['_token'], $command['commandNamespace'], $command['commandTitle']);
+        unset($command['_token']);
+        //unset($command['_token'], $command['commandNamespace'], $command['commandTitle']);
         
         try{
             file_put_contents($this->getCommandCachedFile($commandNamespace, $commandTitle), 

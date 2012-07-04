@@ -78,6 +78,7 @@ class DefaultController extends Controller
             $this->commandDefinition
         );
 
+//        return $this->createForm($commandType); 
         return $this->createForm($commandType, 
                $this->get('nocline.command_history')->getCommandParamters($commandNamespace, $commandTitle));        
     }
