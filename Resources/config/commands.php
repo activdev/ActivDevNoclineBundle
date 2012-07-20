@@ -12,7 +12,7 @@
 return array
 (
     
-    '*'=>array //Global hooks go here, must not be removed.
+    '*' => array //Global hooks go here, must not be removed.
     (
 //        'data_methods'=>array
 //        (
@@ -26,6 +26,18 @@ return array
 //            'bundle'                => 'self::getListOfBundles'
 //        ),          
 //    ),
+    
+    'doctrine:generate:form'=>array
+    (
+        'data_methods'=>array
+        (
+            'entity'                => 'self::getListOfEntities'
+        ),
+        'act-as' => array
+        (
+            'entity'                => array('loopable')
+        )
+    ),
     'assets:install'=>array
     (
         'data'=>array
@@ -74,6 +86,5 @@ return array
         (
             'to-type'                => 'self::getListOfConfigFormat'
         ),
-        //'validation.not_required'=>array('filter'),
     ),
 );

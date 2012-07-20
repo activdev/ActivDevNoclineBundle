@@ -29,7 +29,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array ('list' => $this->get('nocline.command_util')->getListAsArray());
+        return array (
+            'list'      => $this->get('nocline.command_util')->getListAsArray(),
+            'savedList' => $this->get('nocline.command_history')->getSavedCommandList(true)
+        );
     }
     
     /**
@@ -56,7 +59,7 @@ class DefaultController extends Controller
         $command = $request->request->get('command');
         $form    = $this->getCommandForm($command['commandNamespace'], $command['commandTitle']);
 
-        $this->get('nocline.command_history')->saveCommandParamters($command);
+        $this->get('nocline.command_history')->saveCommandParamters($command, $this->commandDefinition);
         
         $form->bindRequest($request);
         if ($form->isValid()) 
@@ -78,7 +81,6 @@ class DefaultController extends Controller
             $this->commandDefinition
         );
 
-//        return $this->createForm($commandType); 
         return $this->createForm($commandType, 
                $this->get('nocline.command_history')->getCommandParamters($commandNamespace, $commandTitle));        
     }

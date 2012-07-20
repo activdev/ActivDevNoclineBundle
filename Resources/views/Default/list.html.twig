@@ -1,0 +1,14 @@
+{% for nsTitle, ns in list %}
+    <li>
+        <span href="#">{{ nsTitle }}</span>
+        <ul>
+            {% for cmdTitle, cmd in ns %}
+            <li><a href="{{ path('activdev_nocline_default_form', 
+            { 
+                'commandNamespace': nsTitle, 
+                'commandTitle':     cmdTitle
+            }) }}" title="{{ cmd.description }}" data-title="{{ nsTitle ~ " " ~ cmd.title }}">{{ cmd.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}

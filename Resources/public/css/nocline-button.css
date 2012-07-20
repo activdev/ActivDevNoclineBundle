@@ -30,7 +30,7 @@
 }
 #nocline-d-w-imc{
     position: absolute;
-    right: 18px;
+    right: 25px;
     top: 10px;
     cursor: pointer;
     cursor: hand;
@@ -103,4 +103,7 @@
 
 #nocline-d-w-o-c pre:last-of-type {
     padding-bottom: 50px !important;
+}
+.console-cmd{
+    color: #FFE182;
 }

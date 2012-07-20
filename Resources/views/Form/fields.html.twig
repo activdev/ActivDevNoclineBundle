@@ -1,3 +1,15 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+<label class="label_chk">
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    <span>{{ label }}</span>
+</label>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+
 {% block textmultiple_widget %}
 {% spaceless %}
 
@@ -8,7 +20,6 @@
 {% endspaceless %}
 {% endblock %}
 
-{% extends 'form_div_layout.html.twig' %}
 
 {% block field_label %}
     {{ parent() }}

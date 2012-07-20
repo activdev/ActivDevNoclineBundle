@@ -43,11 +43,6 @@ class CommandType extends AbstractType
         {
             $field = $this->getFieldTypeAndOptions($definition);            
             $builder->add($definition['name'], $field['type'], $field['options']);
-            
-//            if($definition['validation']['required'])
-//            {
-//                $this->requiredFields[] = $definition['name'];
-//            }
         }
         
         $this->setValidations($builder);
@@ -63,14 +58,14 @@ class CommandType extends AbstractType
         //for use with the configuration mapping.
         //As a consequence, if a command defines the same name for an argument and an option were are in trouble !
         $strippedName    = str_replace('--', '', $definition['name']);
-//        $isFieldRequired = $this->commandConfiguration->isArgOptRequired(
-//            $this->definition['command'], 
-//            $strippedName, 
-//            $definition['validation']['required']
-//        );
         $isFieldRequired = $definition['validation']['required'];
+        
         $data = $this->commandConfiguration->getArgOptData($this->definition['command'], $strippedName, $isFieldRequired);
         
+        // Deal with behaviours
+        // is a loopable arg/opt
+        $isLoopable = $this->commandConfiguration->hasLoopableBehaviour($this->definition['command'], $strippedName);
+
         // for server side validation 
         if($isFieldRequired)
         {
@@ -97,16 +92,30 @@ class CommandType extends AbstractType
         {
             $field['options']['data'] = $data;
         }
-
+        
         if(is_array($data))
         {
             unset($field['options']['data']);
 
+            $isMultiple = $field['type'] == 'textmultiple';
+            
             $field['type'] = 'choice';
-
             $field['options']['choices']  = $data;
-            $field['options']['expanded'] = false;
-            $field['options']['multiple'] = false;
+
+            // if the arg/opt is_multiple or it as a loopable behaviour
+            // let the type by multiple checkboxes
+            if($isMultiple || $isLoopable)
+            {
+                $field['options']['expanded'] = true;
+                $field['options']['multiple'] = true;
+                $field['options']['attr']     = array('class' => 'chk_multiple');
+            }
+            else
+            {
+                $field['options']['expanded'] = false;
+                $field['options']['multiple'] = false;                
+            }
+
         }
 
         return $field;
@@ -119,7 +128,6 @@ class CommandType extends AbstractType
     
     protected function setValidations(FormBuilder &$builder)
     { 
-        //print_r($this->requiredFields);
         $requiredFields = $this->requiredFields;
         $builder->addValidator(new CallbackValidator(function(\Symfony\Component\Form\FormInterface $form) use($requiredFields) 
         {

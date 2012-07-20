@@ -8,6 +8,18 @@
  * file that was distributed with this source code.
  */
 
+var _n_is_last_cmd_enabled   = true;
+var _n_if_always_show_output = false;
+var _n_nb_last_commands      = 2;
+
+var _n_response_is_error  = false;
+var _n_last_command_html  = '';
+var _n_last_command_title = '';
+var _n_top_n_command_tpl  = '\n\
+<li><span id="nocline-top-span">Last used commands</span>\n\
+<ul id="nocline-ul-top-cmd"><li>%a</li></ul>\n\
+</li>';
+
 jQuery(function() 
 {
     miscInit();
@@ -29,8 +41,8 @@ function miscInit()
     });
     
     //toggle output panel, reload commands list
-    $('#nocline-w-op').on('click', function() { parent.toggleNoclineOutput(); });
-    $('#nocline-w-or').on('click', function() { location.reload(); });
+    $('#nocline-w-op').on('click', function() {parent.toggleNoclineOutput();});
+    $('#nocline-w-or').on('click', function() {location.reload();});
     
     //show / hide main window
     jQuery('#nocline-m-btn').on('click', function()
@@ -101,16 +113,20 @@ function miscInit()
 
 function callForm()
 {
-    jQuery('#nocline-mw-ll a').on('click', function(event) 
+    jQuery('#nocline-mw-ll a').live('click', function(event) 
     {
         event.stopPropagation();
         
         var $aTag = jQuery(this);
         
+        //take the last command html value
+        _n_last_command_title = jQuery.trim($aTag.attr('data-title'));
+        _n_last_command_html  = $aTag.parent().html().replace(/">.*<\/a>/, '">'+$aTag.attr('data-title')+'</a>');
+        
         //resize nocline window, show form wrapper
         jQuery('#nocline-mw').css('width', '400px');
         jQuery('#nocline-mw-r').show();
-        jQuery('#nocline-mw-r-t').text($aTag.parent().parent().parent().find('span').text() + ' ' + $aTag.text());
+        jQuery('#nocline-mw-r-t').text($aTag.attr('data-title'));
         
         jQuery.ajax(
         {
@@ -122,6 +138,15 @@ function callForm()
                 
                 //set auto focus on the first field
                 jQuery('#command div input, #command div select').first().focus();
+                
+                //hide duplicated checkboxes labels
+                jQuery('.label_chk').siblings().not('.label_chk').hide();                
+                
+                //if the config always show output is enabled, check the checkbox
+                if(_n_if_always_show_output)
+                {
+                    jQuery('#nocline-mw-r-oo').attr('checked', 'checked');
+                }
             }
         });
         
@@ -149,7 +174,6 @@ function addRemoveMultipleinput()
     });
 }
 
-var _n_response_is_error = false;
 function submitForm()
 {
     jQuery('#nocline-mw-btn-s').on('click', function(event) 
@@ -160,7 +184,10 @@ function submitForm()
         }
         
         var $form = jQuery('#nocline-mw-r-b form');
-                
+        
+        //insert command in the last used html list
+        insertInLastUsedList();
+        
         jQuery.ajax({
             url   : $form.attr('action'),
             data  : $form.serializeArray(),
@@ -209,4 +236,47 @@ function validateForm()
     });
     
     return isOk;
+}
+
+function insertInLastUsedList()
+{
+    if(!_n_is_last_cmd_enabled)
+    {
+        return;
+    }
+    
+    if(_n_last_command_html != '')
+    {
+        if(jQuery('#nocline-ul-top-cmd').length > 0)
+        {
+            //if the command is already added, skip
+            var is_already_added = false;
+            jQuery('#nocline-ul-top-cmd li').each(function(){
+                if(jQuery.trim(jQuery(this).text()) == _n_last_command_title)
+                {
+                    is_already_added = true;
+                    return false;
+                }
+            });
+            if(is_already_added)
+            {
+                return;
+            }
+        
+            //add to list
+            jQuery('#nocline-ul-top-cmd').prepend('<li>'+_n_last_command_html+'</li>');
+            
+            //remove last one if nb max configured is reached
+            if(jQuery('#nocline-ul-top-cmd li').length > _n_nb_last_commands)
+            {
+                jQuery('#nocline-ul-top-cmd li:last').remove();
+            }
+        }
+        else // create list last used from template
+        {
+            jQuery('#nocline-mw-ll').prepend(_n_top_n_command_tpl.replace('%a', _n_last_command_html));
+        }
+    }
+    
+    _n_last_command_html = '';
 }

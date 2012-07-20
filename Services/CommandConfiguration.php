@@ -17,6 +17,7 @@ use ActivDev\NoclineBundle\Services\Util\BaseCommandConfiguration;
 class CommandConfiguration extends BaseCommandConfiguration
 {
     protected $config;
+    private   $fullConfig;
     
     public function __construct(Kernel $kernel)
     {
@@ -31,6 +32,11 @@ class CommandConfiguration extends BaseCommandConfiguration
        
     protected function getConfiguration($command) 
     {
+        if($this->fullConfig)
+        {
+            return $this->fullConfig;
+        }
+        
         //1. the global config namespace
         $conf = $this->config['*'];
         
@@ -52,7 +58,9 @@ class CommandConfiguration extends BaseCommandConfiguration
                 $conf = array_merge($conf, $this->config[$command]);
             }
         }
-       
+        
+        $this->fullConfig = $conf;
+        
         return $conf;
     }
     
@@ -96,24 +104,44 @@ class CommandConfiguration extends BaseCommandConfiguration
         return null;
     }
     
-//    // Maybe it will later be interesting to implement this
-//    public function isArgOptRequired($command, $arg_opt, $isRequired) 
-//    {
-//        if($config = $this->getConfiguration($command))
-//        {
-//            if(isset($config['validation.not_required']) && in_array($arg_opt, $config['validation.not_required']))
-//            {
-//                return false;
-//            }
-//            if(isset($config['validation.required']) && in_array($arg_opt, $config['validation.required']))
-//            {
-//                return true;
-//            }
-//        }
-//        
-//        
-//        return $isRequired;
-//    }
+    public function getLoopableArgOpt($command)
+    {
+        $conf = $this->getArgOptBehaviours($command);
+        if(isset($conf['act-as']))
+        {
+            foreach($conf['act-as'] as $k => $v)
+            {
+                if(in_array('loopable', $v))
+                {
+                    return $k;
+                }
+            }
+        }
+            
+        return null;
+    }
+    
+    protected function getArgOptBehaviours($command, $arg_opt = null)
+    {
+        $conf = $this->getConfiguration($command);
+        
+        if(!$arg_opt)
+        {
+            return $conf;
+        }
+
+        if(isset($conf['act-as']) && isset($conf['act-as'][$arg_opt]))
+        {
+            return $conf['act-as'][$arg_opt];
+        }
+
+        return array();
+    }
+    
+    public function hasLoopableBehaviour($command, $arg_opt)
+    {
+        return in_array('loopable', $this->getArgOptBehaviours($command, $arg_opt));
+    }
     
     public function getArgOptData($command, $arg_opt, $isRequired) //for evolution replace isRequired with all validation rules
     {

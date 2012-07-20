@@ -12,20 +12,8 @@
         <div id="nocline-mw-l">
             <ul id="nocline-mw-ll">
 
-                {% for nsTitle, ns in list %}
-                <li>
-                    <span href="#">{{ nsTitle }}</span>
-                    <ul>
-                        {% for cmdTitle, cmd in ns %}
-                        <li><a href="{{ path('activdev_nocline_default_form', 
-                        { 
-                            'commandNamespace': nsTitle, 
-                            'commandTitle':     cmdTitle
-                        }) }}" title="{{ cmd.description }}">{{ cmd.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endfor %}
+                {% include 'ActivDevNoclineBundle:Default:history_list.html.twig' with {'list': savedList} %}
+                {% include 'ActivDevNoclineBundle:Default:list.html.twig'         with {'list': list} %}
 
             </ul>                
         </div>

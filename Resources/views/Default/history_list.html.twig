@@ -1,0 +1,14 @@
+{% for nsTitle, ns in list %}
+    <li>
+        <span href="#" id="nocline-top-span">Last used commands</span>
+        <ul>
+            {% for cmdTitle, cmd in ns %}
+            <li><a href="{{ path('activdev_nocline_default_form', 
+            { 
+                'commandNamespace': cmd.namespace, 
+                'commandTitle':     cmd.cmd_title
+            }) }}" title="{{ cmd.description }}" data-title="{{ cmd.namespace ~ " " ~ cmd.title }}">{{ cmd.displayed_title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}

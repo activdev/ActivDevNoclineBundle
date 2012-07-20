@@ -17,7 +17,9 @@
     </parameters>
 
     <services>
-        <service id="nocline.command_history" class="ActivDev\NoclineBundle\Services\HistoryManager"></service>
+        <service id="nocline.command_history" class="ActivDev\NoclineBundle\Services\HistoryManager">
+            <argument type="service" id="kernel" />
+        </service>
         
         <service id="form.type.textmultiple" class="ActivDev\NoclineBundle\Form\Type\TextmultipleType">
             <tag name="form.type" alias="textmultiple" />
@@ -33,11 +35,12 @@
         </service>
         
         <service id="nocline.command_type" class="%nocline.command_type.class%">
-            <argument type="service" id="nocline.command_configuration" />            
+            <argument type="service" id="nocline.command_configuration" />
         </service>
         
         <service id="nocline.command_util" class="%nocline.command_util.class%">
             <argument type="service" id="kernel" />
+            <argument type="service" id="nocline.command_configuration" />
             <argument>%nocline.config_parameter.max_execution_time%</argument>
             <argument>%nocline.config_parameter.execution_mode%</argument>
         </service>

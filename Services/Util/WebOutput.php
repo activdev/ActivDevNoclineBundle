@@ -11,12 +11,26 @@
 
 namespace ActivDev\NoclineBundle\Services\Util;
 
-use Symfony\Component\Console\Output\StreamOutput;
+use Symfony\Component\Console\Output\Output;
 
-class WebOutput extends StreamOutput
+class WebOutput extends Output
 {
+    
+    protected $output = '';
+
     public function __construct($verbosity = self::VERBOSITY_NORMAL, $decorated = null, OutputFormatterInterface $formatter = null)
     {
-        parent::__construct(fopen('php://output', 'w'), $verbosity, $decorated, $formatter);
+        parent::__construct($verbosity, $decorated, $formatter);
     }
+
+    public function doWrite($message, $newline)
+    {
+        $this->output .= $message.($newline ? PHP_EOL : '');
+    }
+
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
 }

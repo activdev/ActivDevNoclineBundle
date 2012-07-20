@@ -232,7 +232,7 @@ class CommandUtil
         
         $content    = '';
 
-        //get dirs and go to root dir ** do not remove **
+        //get dirs and go to root dir
         $appDir  = $this->kernel->getRootDir();
         $rootDir = preg_replace('#/app$#', '', $appDir);
         chdir($rootDir);
@@ -247,24 +247,58 @@ class CommandUtil
             $cmd_ouput   = '<span class="console-cmd">&gt;&gt;&gt; php app/console '.escapeshellcmd($commandLine).'</span>'.PHP_EOL.PHP_EOL;
         }
         
-        //necessary because array_shift is done in the ArgvInput constructor to remove application name
-        array_unshift($params, '');
-        $app    = new ConsoleApplication($this->kernel);
-        $input  = new ArgvInput($params);
-        $output = new WebOutput();
-
-        
-//echo implode(' ', $params);
-        $app->setAutoExit(false);
-        $errCode = $app->run($input, $output);
-        $content = $output->getOutput();
-
-        if($isListCommand)
+        if($this->execution_mode == 'web' || $isListCommand)
         {
-            return $content;            
+            //necessary because array_shift is done in the ArgvInput constructor to remove application name
+            array_unshift($params, '');
+
+            $input = new ArgvInput($params);
+            $app   = new ConsoleApplication($this->kernel);
+
+            
+            
+            //get the reponse into the buffer
+            ob_start(function ($buffer) use(&$content, $isListCommand, $cmd_ouput) 
+            {
+                if($isListCommand)
+                {
+                    $content = $buffer; 
+                }
+                else
+                {
+                    $content = '<pre>'.$cmd_ouput.$buffer.'</pre>';
+                    $content = preg_replace('/(?:(?:\r\n|\r|\n)\s*){2}/s', "\n\n", $content);
+                }
+                
+                return '';
+            });
+
+            $app->setAutoExit(false);
+            
+            //if there is an error echo append the error flag to the response
+            if($app->run($input, new WebOutput()))
+            {
+                echo '<!-- 1 -->';
+            }
+            
+            ob_end_clean();   
+        }
+        // not sure if this execution mode really usefull at all...
+        else if($this->execution_mode == 'console')
+        {
+            try {
+                $p = new Process(escapeshellcmd($appDir.'/console '.$commandLine), $rootDir);
+                $p->run();
+                $content = '<pre>'.$cmd_ouput.trim($p->getOutput()).trim($p->getErrorOutput()).($p->isSuccessful() ? '':'<!-- 1 -->').'</pre>';
+            }
+            catch (\Exception $e)
+            {
+                $content = '<pre>'.$e->getMessage() . PHP_EOL . $p->getErrorOutput().'<!-- 1 -->'.'</pre>';
+            }
+            
         }
         
-        return '<pre>'.$cmd_ouput.$content.($errCode ? '<!-- 1 -->':'').'</pre>';
+        return $content;
     }
     
     protected function formatCommandLine($command, $params)
