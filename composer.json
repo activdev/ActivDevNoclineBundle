@@ -2,7 +2,7 @@
     "name":         "activdev/nocline-bundle",
     "type":         "symfony-bundle",
     "description":  "Fast and efficient way to run symfony2 commands using a web interface. The interface enable you to use forms",
-    "keywords":     ["command","console", "interface", 'form'],
+    "keywords":     ["command","console", "interface", "form"],
     "homepage":     "http://nocline.activdev.com",
     "license":      "GPLv3",
     "authors": [
